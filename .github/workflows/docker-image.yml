@@ -5,6 +5,12 @@ on:
     branches: [ main ]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        run: echo ${{ secrets.DOCKERHUB_USERNAME }}
+      
   login:
     runs-on: ubuntu-latest
     steps:
@@ -14,6 +20,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
   docker:
     runs-on: ubuntu-latest
     steps:
