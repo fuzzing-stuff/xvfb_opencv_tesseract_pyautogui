@@ -17,4 +17,4 @@ jobs:
     - name: Build the Docker image
       env:
         IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-      run: docker build . --file Dockerfile --tag IMAGE_NAME:$(date +%s)
+      run: docker build . --file Dockerfile -t "$IMAGE_NAME":$(date +%s)
