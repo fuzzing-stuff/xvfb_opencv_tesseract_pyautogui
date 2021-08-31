@@ -1,0 +1,1 @@
+# xvfb_opencv_tesseract_pyautogui
