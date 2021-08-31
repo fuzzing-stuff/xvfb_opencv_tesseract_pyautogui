@@ -23,9 +23,5 @@ RUN pip3 install opencv-python
 RUN pip3 install pytesseract
 RUN apt install -y tesseract-ocr
 
-ADD test.py /opt/test.py
-ADD testsuites /opt/testsuites
-ADD bin /opt/bin
-
-COPY test.sh /opt/test.sh
-RUN ["chmod", "+x", "/opt/test.sh"]
+COPY run.sh /opt/run.sh
+RUN ["chmod", "+x", "/opt/run.sh"]
