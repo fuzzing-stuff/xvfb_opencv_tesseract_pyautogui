@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        run: echo ${{ environments.DOCKERHUB_USERNAME }}
+        run: echo ${{ secrets.DOCKERHUB_USERNAME }}
       
   login:
     runs-on: ubuntu-latest
