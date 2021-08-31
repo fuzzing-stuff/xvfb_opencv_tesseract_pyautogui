@@ -8,14 +8,17 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          context: ./
-          file: ./Dockerfile
-          push: true
-          repository: ${{ secrets.DOCKERHUB_NAME }}
-          tags: latest
+      - uses: action/checkout@v2
+      - name: docker login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          DOCKER_NAME: ${{ secrets.DOCKERHUB_NAME }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: docker build
+        run: |
+          docker build . -t $DOCKER_USER/$DOCKER_NAME
+      - name: docker push
+        run: |
+          docker push $DOCKER_USER/$DOCKER_NAME
